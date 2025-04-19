@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="top">
+
+        <!-- Titre principal -->
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statistiques générales"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Nombre total d’habitudes -->
+        <TextView
+            android:id="@+id/textTotalHabits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total d’habitudes : 0"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nombre total de validations -->
+        <TextView
+            android:id="@+id/textTotalChecks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total de validations : 0"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Meilleur streak -->
+        <TextView
+            android:id="@+id/textBestStreak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meilleur enchaînement : 0 jours"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Habitude la plus fréquente -->
+        <TextView
+            android:id="@+id/textMostFrequent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Habitude la plus régulière : -"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Ajoute ici d'autres stats si besoin -->
+
+    </LinearLayout>
+</ScrollView>

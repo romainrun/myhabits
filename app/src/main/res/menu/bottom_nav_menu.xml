@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Accueil" />
+
+    <item
+        android:id="@+id/groupsFragment"
+        android:icon="@drawable/ic_groups"
+        android:title="Routines" />
+
+    <item
+        android:id="@+id/navigation_stats"
+        android:icon="@drawable/ic_stats"
+        android:title="Stats" />
+
+    <item
+        android:id="@+id/proFragment"
+        android:icon="@drawable/ic_pro_lock"
+        android:title="Pro" />
+</menu>

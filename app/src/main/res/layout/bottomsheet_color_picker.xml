@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_color"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/label_color_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choisissez une couleur"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_colors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:id="@+id/layout_pro_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_pro_hint"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_pro_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎨 Plus de couleurs sont disponibles avec la version Pro"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/button_go_pro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Débloquer la version Pro"
+            android:textAllCaps="false"
+            style="@style/HabitButton.Secondary"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_cancel_color_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Annuler"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white" />
+</LinearLayout>

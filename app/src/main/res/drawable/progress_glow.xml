@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fond de la barre -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp"/>
+            <solid android:color="#D6D6D6"/>
+        </shape>
+    </item>
+
+    <!-- Progression avec brillance animée -->
+    <item android:id="@android:id/progress">
+        <clip android:clipOrientation="horizontal" android:gravity="left">
+            <animated-rotate
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:drawable="@drawable/progress_glow_shine"
+                android:pivotX="0%"
+                android:pivotY="50%"
+                android:fromDegrees="0"
+                android:toDegrees="360"
+                android:duration="1500"
+                android:repeatCount="infinite" />
+        </clip>
+    </item>
+
+</layer-list>

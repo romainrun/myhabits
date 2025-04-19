@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/spinner_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fond arrondi -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <stroke android:width="1dp" android:color="#CCCCCC" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+
+    <!-- (optionnel) flèche à droite - remplacer drawable si dispo -->
+    <!--
+    <item android:gravity="end|center_vertical" android:right="12dp">
+        <drawable android:drawable="@drawable/ic_spinner_arrow" />
+    </item>
+    -->
+
+</layer-list>

@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.MyHabits" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Couleurs principales -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <!-- Fond sombre -->
+        <item name="colorSurface">@color/darkSurface</item>
+        <item name="colorOnSurface">@color/darkOnSurface</item>
+        <item name="android:windowBackground">@color/darkSurface</item>
+
+        <!-- Police -->
+        <item name="android:fontFamily">@font/inter</item>
+
+        <!-- Obligatoire pour éviter crash sur TextInputLayout -->
+        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
+        <item name="android:textColorPrimary">@color/darkOnSurface</item>
+    </style>
+
+</resources>

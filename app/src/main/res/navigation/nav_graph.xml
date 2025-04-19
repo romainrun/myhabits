@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.rrtech.myhabits.fragment.HomeFragment"
+        android:label="Accueil"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Action vers le fragment d’ajout -->
+        <action
+            android:id="@+id/action_homeFragment_to_addEditHabitFragment"
+            app:destination="@id/addEditHabitFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="com.rrtech.myhabits.fragment.RoutinesFragment"
+        android:label="Routines"
+        tools:layout="@layout/fragment_routine" />
+
+    <fragment
+        android:id="@+id/proFragment"
+        android:name="com.rrtech.myhabits.fragment.ProFragment"
+        android:label="Pro"
+        tools:layout="@layout/fragment_pro">
+        <action
+            android:id="@+id/action_global_slide"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.rrtech.myhabits.utils.StatsFragment"
+        android:label="Statistiques"
+        tools:layout="@layout/fragment_stats">
+    <action
+        android:id="@+id/action_global_slide"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+</fragment>
+
+    <fragment
+        android:id="@+id/addEditHabitFragment"
+        android:name="com.rrtech.myhabits.fragment.AddEditHabitFragment"
+        android:label="Ajouter une habitude"
+        tools:layout="@layout/fragment_add_edit_habit"
+        app:enterAnim="@anim/slide_in_up"
+        app:exitAnim="@anim/slide_out_down"
+        app:popEnterAnim="@anim/slide_in_up"
+        app:popExitAnim="@anim/slide_out_down" />
+</navigation>

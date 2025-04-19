@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/habitCompactRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="56dp"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- Icône -->
+    <TextView
+        android:id="@+id/habitIconCompact"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="📚"
+        android:textSize="18sp"
+        android:background="@drawable/bg_circle"
+        android:textColor="@android:color/black" />
+
+    <!-- Détails -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/habitNameCompact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom de l’habitude"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/text_last_planned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dernier jour prévu : Lundi"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:visibility="gone"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/text_missed_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non validée depuis 3 jours"
+            android:textSize="12sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginTop="2dp"
+            android:visibility="gone" />
+
+            <TextView
+            android:id="@+id/text_routine_name_compact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Routine : Matin"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="2dp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <!-- Checkbox (invisible ici mais toujours présent pour le même adapter) -->
+    <CheckBox
+        android:id="@+id/habitCheckCompact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!-- Couleur (rond de couleur à droite) -->
+    <View
+        android:id="@+id/habitIconCompactWrapper"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/bg_circle"
+        android:visibility="visible" />
+</LinearLayout>

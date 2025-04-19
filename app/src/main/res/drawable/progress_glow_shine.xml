@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fond gris clair (track) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#E0E0E0"/>
+            <corners android:radius="12dp"/>
+        </shape>
+    </item>
+
+    <!-- Contenu de progression -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <gradient
+                    android:startColor="#4CAF50"
+                    android:centerColor="#81C784"
+                    android:endColor="#4CAF50"
+                    android:angle="0" />
+                <corners android:radius="12dp"/>
+            </shape>
+        </clip>
+    </item>
+
+    <!-- Effet de brillance animé par-dessus -->
+    <item>
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="360"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:type="linear"
+                    android:angle="0"
+                    android:startColor="#33FFFFFF"
+                    android:centerColor="#55FFFFFF"
+                    android:endColor="#33FFFFFF"
+                    android:gradientRadius="180"
+                    android:useLevel="false" />
+                <corners android:radius="12dp"/>
+            </shape>
+        </rotate>
+    </item>
+
+</layer-list>

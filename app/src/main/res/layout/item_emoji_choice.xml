@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_emoji_choice"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Emoji -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_emoji"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:text="🎯"
+        android:textColor="?android:textColorPrimary"
+        android:padding="8dp" />
+
+    <!-- Icône de cadenas (invisible par défaut) -->
+    <ImageView
+        android:id="@+id/icon_lock"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_lock"
+        app:tint="@android:color/darker_gray"
+        android:visibility="gone" />
+</FrameLayout>

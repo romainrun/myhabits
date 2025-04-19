@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyHabitTracker</string>
+
+    <string-array name="reminder_offsets">
+        <item>À l’heure exacte</item>
+        <item>5 min avant</item>
+        <item>10 min avant</item>
+        <item>30 min</item>
+        <item>1h</item>
+    </string-array>
+
+
+</resources>

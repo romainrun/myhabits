@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorTertiary">#FF9800</color>
+    <color name="colorOnTertiary">#FFFFFF</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorBackground">#C8F560</color>
+    <color name="colorPrimaryDark">#90CAF9</color>       <!-- Bleu clair -->
+    <color name="colorSecondaryDark">#F48FB1</color>     <!-- Rose clair -->
+    <color name="dark_background">#121212</color>        <!-- Fond sombre -->
+    <color name="dark_surface">#1E1E1E</color>
+    <color name="checked_background">#A5D6A7</color>
+    <!-- Couleurs principales -->
+<color name="colorPrimaryVariant">#3700B3</color>
+
+<!-- Accent / secondaire -->
+<color name="colorSecondaryVariant">#018786</color>
+
+
+<!-- États / erreurs -->
+<color name="colorError">#B00020</color>
+<color name="colorOnError">#FFFFFF</color>
+    <color name="darkSurface">#121212</color>
+    <color name="darkOnSurface">#FFFFFF</color>
+<!-- Personnalisées -->
+<color name="teal_700">#018786</color>
+<color name="gray_light">#E0E0E0</color>
+<color name="gray_dark">#424242</color>
+    <color name="progress_red">#F44336</color>
+    <color name="progress_orange">#FF9800</color>
+    <color name="progress_yellow">#FFEB3B</color>
+    <color name="progress_green">#4CAF50</color>
+
+
+
+    <color name="blue">#2196F3</color>
+<color name="green">#4CAF50</color>
+<color name="purple">#9C27B0</color>
+<color name="white">#FFFFFF</color>
+<color name="black">#000000</color>
+    <color name="orange">#FF9800</color>
+    <color name="red">#F44336</color>
+</resources>
+
+

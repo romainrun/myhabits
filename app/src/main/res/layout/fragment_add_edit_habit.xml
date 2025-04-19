@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll_add_edit_habit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="?android:colorBackground"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/container_add_edit_habit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
+
+        <!-- 📝 Emoji + Nom + Pastille couleur -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:id="@+id/view_selected_color"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="#4CAF50"
+                android:background="@drawable/color_circle" />
+
+            <EditText
+                android:id="@+id/edit_habit_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/HabitEditText"
+                android:hint="Nom de l’habitude"
+                android:inputType="textCapSentences"
+                android:textSize="18sp"
+                android:padding="14dp"
+                android:background="@drawable/input_background" />
+
+            <TextView
+                android:id="@+id/text_selected_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:text="💪"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/color_circle"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- 🔁 Routines dynamiques -->
+        <TextView
+            android:id="@+id/label_routines"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Routines associées"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:id="@+id/layoutRoutinesContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/button_add_routine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter une routine"
+            android:drawableLeft="@drawable/ic_add"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+        <!-- 📅 Jours de répétition -->
+        <TextView
+            android:id="@+id/label_repeat_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jours de répétition"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:singleSelection="false"
+                app:chipSpacingHorizontal="8dp"
+                app:chipSpacingVertical="4dp">
+
+                <!-- Jours -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_mon"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Lun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_tue"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Mar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_wed"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Mer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_thu"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Jeu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_fri"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Ven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sat"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Sam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_sun"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:text="Dim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="?android:textColorPrimary"
+                    android:checkable="true"
+                    app:checkedIconVisible="false" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- ⏰ Rappel -->
+        <Switch
+            android:id="@+id/switch_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activer un rappel"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Bloc heure + offset, masqué par défaut -->
+        <LinearLayout
+            android:id="@+id/layout_reminder_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="#F7F7F7"
+            android:layout_marginBottom="24dp"
+            android:elevation="2dp">
+
+
+            <TextView
+                android:id="@+id/label_reminder_time"
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:text="Heure du rappel"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/layout_time_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_reminder_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Heure du rappel">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_reminder_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none"
+                        android:textSize="16sp"
+                        android:padding="12dp"
+                        android:drawableStart="@drawable/ic_clock"
+                        android:drawablePadding="12dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_reminder_offset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/label_reminder_offset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quand ?"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_reminder_offset"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/AppSpinnerStyle"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ✅ Enregistrement -->
+        <Button
+            android:id="@+id/button_save_habit"
+            android:layout_width="match_parent"
+            style="@style/HabitButton"
+            android:layout_height="wrap_content"
+            android:text="Enregistrer l’habitude"
+            android:textStyle="bold"
+            android:padding="14dp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:id="@+id/text_limit_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vous avez atteint la limite d’habitudes dans la version gratuite. Passez à la version Pro pour en ajouter plus."
+            android:textColor="@color/red"
+            android:visibility="gone"
+            android:gravity="center"
+            android:padding="12dp" />
+    </LinearLayout>
+</ScrollView>

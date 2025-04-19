@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pro_fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDF9"
+    android:padding="24dp">
+
+    <!-- PRO NON ACHETÉ -->
+    <LinearLayout
+        android:id="@+id/layout_pro_not_purchased"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_pro"
+        android:padding="32dp"
+        android:elevation="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/ic_pro_illustration"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="Illustration Pro" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passez à Pro ✨"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#1E1E1E"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/text_pro_features_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:textAlignment="viewStart"
+            android:lineSpacingExtra="6dp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seulement 2,99 € – à vie"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="28dp" />
+
+        <Button
+            android:id="@+id/button_buy_pro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Débloquer Pro maintenant"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:textAllCaps="false"
+            android:paddingVertical="14dp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- PRO ACHETÉ -->
+    <LinearLayout
+        android:id="@+id/layout_pro_purchased"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_pro"
+        android:padding="32dp"
+        android:elevation="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Merci pour votre soutien ❤️"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#1E1E1E"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vous avez débloqué toutes les fonctionnalités Pro suivantes :"
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:textAlignment="viewStart"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/textProFeatures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:lineSpacingExtra="6dp"
+            android:textAlignment="viewStart" />
+    </LinearLayout>
+
+</FrameLayout>
