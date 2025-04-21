@@ -29,6 +29,7 @@ import com.rrtech.myhabits.databinding.FragmentAddEditHabitBinding;
 import com.rrtech.myhabits.state.ProState;
 import com.rrtech.myhabits.ui.main.HabitViewModel;
 import com.rrtech.myhabits.ui.main.RoutinesViewModel;
+import com.rrtech.myhabits.utils.SettingsManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -96,6 +97,8 @@ public class AddEditHabitFragment extends Fragment {
                 });
             }
         }
+
+        reorderDayChips();
 
         observeRoutines();
 
@@ -337,6 +340,29 @@ public class AddEditHabitFragment extends Fragment {
                 .translationY(0f)
                 .setDuration(250)
                 .start();
+    }
+    private void reorderDayChips() {
+        int firstDay = SettingsManager.getFirstDayOfWeek(requireContext()); // 1 = Dimanche, 2 = Lundi, etc.
+        List<View> allChips = new ArrayList<>();
+        allChips.add(binding.chipSun); // index 0 -> Sunday
+        allChips.add(binding.chipMon);
+        allChips.add(binding.chipTue);
+        allChips.add(binding.chipWed);
+        allChips.add(binding.chipThu);
+        allChips.add(binding.chipFri);
+        allChips.add(binding.chipSat);
+
+        // Réorganise les chips
+        List<View> reordered = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            int index = (firstDay - 1 + i) % 7;
+            reordered.add(allChips.get(index));
+        }
+
+        binding.chipGroupDays.removeAllViews();
+        for (View chip : reordered) {
+            binding.chipGroupDays.addView(chip);
+        }
     }
 
     @Override

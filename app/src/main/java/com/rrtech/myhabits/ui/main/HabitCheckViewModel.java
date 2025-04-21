@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.rrtech.myhabits.data.db.AppDatabase;
 import com.rrtech.myhabits.data.model.HabitCheck;
@@ -39,6 +40,16 @@ public class HabitCheckViewModel extends AndroidViewModel {
                 db.habitCheckDao().insert(check));
     }
 
+
+    public void safeInsert(HabitCheck check) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            HabitCheck existing = db.habitCheckDao().getCheckForHabitSync(check.habitId, check.date);
+            if (existing == null) {
+                db.habitCheckDao().insert(check);
+            }
+        });
+    }
+
     public void delete(HabitCheck check) {
         AppDatabase.databaseWriteExecutor.execute(() ->
                 db.habitCheckDao().delete(check));
@@ -63,8 +74,17 @@ public class HabitCheckViewModel extends AndroidViewModel {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public LiveData<Boolean> hasCheckForToday(int habitId) {
         String today = LocalDate.now().toString();
-        return androidx.lifecycle.Transformations.map(
+        return Transformations.map(
                 getCheckForHabit(habitId, today),
+                check -> check != null
+        );
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LiveData<Boolean> hasCheckForDate(int habitId, LocalDate date) {
+        String dateStr = date.toString();
+        return Transformations.map(
+                getCheckForHabit(habitId, dateStr),
                 check -> check != null
         );
     }

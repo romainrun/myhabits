@@ -5,13 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
+import android.view.*;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +25,6 @@ import com.rrtech.myhabits.data.model.Routine;
 import com.rrtech.myhabits.databinding.FragmentRoutineBinding;
 import com.rrtech.myhabits.ui.main.RoutinesViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +35,7 @@ public class RoutinesFragment extends Fragment {
     private BottomSheetBehavior<View> bottomSheetBehavior;
     private RoutineWithHabitsAdapter adapter;
     private MenuItem editMenuItem;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +45,8 @@ public class RoutinesFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_routines, menu);
-        editMenuItem = menu.findItem(R.id.action_edit); // 🔑 garde une référence
-        updateEditMenuIcon(); // 🔄 icône ou texte selon l’état initial
+        editMenuItem = menu.findItem(R.id.action_edit);
+        updateEditMenuIcon();
     }
 
     @Override
@@ -63,49 +56,6 @@ public class RoutinesFragment extends Fragment {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void showEditActions() {
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Actions sur les habitudes")
-                .setItems(new CharSequence[]{"Dupliquer", "Modifier", "Supprimer"}, (dialog, which) -> {
-                    Set<Habit> selected = adapter.getSelectedHabits();
-
-                    if (selected.isEmpty()) {
-                        Toast.makeText(requireContext(), "Aucune habitude sélectionnée", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    switch (which) {
-                        case 0: // Dupliquer
-                            for (Habit h : selected) {
-                                Habit copy = new Habit(h.getName() + " (copie)", h.getIcon(), h.getColor(), h.getRepeatDays(), h.getImportance());
-                                copy.setReminderTime(h.getReminderTime());
-                                viewModel.insertHabit(copy);
-                            }
-                            break;
-
-                        case 1: // Modifier
-                            if (selected.size() == 1) {
-                                Habit habitToEdit = selected.iterator().next();
-                                // TODO : Ouvrir un écran ou une boîte de dialogue d’édition
-                                Toast.makeText(requireContext(), "Modifier : " + habitToEdit.getName(), Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(requireContext(), "Sélectionne une seule habitude pour modifier", Toast.LENGTH_SHORT).show();
-                            }
-                            break;
-
-                        case 2: // Supprimer
-                            for (Habit h : selected) {
-                                viewModel.deleteHabit(h);
-                            }
-                            break;
-                    }
-
-                    adapter.setEditMode(false); // Retour en mode normal
-                })
-                .setNegativeButton("Annuler", null)
-                .show();
     }
 
     @Nullable
@@ -119,18 +69,20 @@ public class RoutinesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         viewModel = new ViewModelProvider(requireActivity()).get(RoutinesViewModel.class);
+
         setupRecyclerView();
         observeCombinedData();
 
-        // ✅ Initialisation du BottomSheet
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetActions);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        bottomSheetBehavior.setDraggable(false); // désactive drag user
+        binding.bottomSheetActions.setVisibility(View.INVISIBLE); // rendu visible mais invisible
+        binding.bottomSheetActions.post(() -> {
+            bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheetActions);
+            bottomSheetBehavior.setHideable(true);
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        });
+        bottomSheetBehavior.setDraggable(false);
 
-
-        // ✅ Actions
         binding.actionEdit.setOnClickListener(v -> {
             Set<Habit> selected = adapter.getSelectedHabits();
             if (selected.size() == 1) {
@@ -139,6 +91,7 @@ public class RoutinesFragment extends Fragment {
                 Toast.makeText(requireContext(), "Sélectionnez une seule habitude à modifier", Toast.LENGTH_SHORT).show();
             }
         });
+
         binding.actionDuplicate.setOnClickListener(v -> {
             for (Habit habit : adapter.getSelectedHabits()) {
                 Habit copy = new Habit(habit.getName() + " (copie)", habit.getIcon(), habit.getColor(), habit.getRepeatDays(), habit.getImportance());
@@ -147,13 +100,10 @@ public class RoutinesFragment extends Fragment {
                 copy.setReminderOffsetMinutes(habit.getReminderOffsetMinutes());
 
                 Routine routine = viewModel.getRoutineForHabit(habit.getId());
-
                 if (routine != null) {
-                    // ⚠️ Appel à une méthode du viewModel qui insère et ajoute à la routine
                     viewModel.insertHabitAndAssignToRoutine(copy, routine.getId());
                 }
             }
-
             exitEditMode();
         });
 
@@ -215,13 +165,15 @@ public class RoutinesFragment extends Fragment {
         adapter.setEditMode(enabled);
 
         if (enabled) {
-            binding.bottomSheetActions.setVisibility(View.VISIBLE); // ✅
+            binding.bottomSheetActions.setVisibility(View.VISIBLE);
             binding.bottomSheetActions.setAlpha(0f);
-            binding.bottomSheetActions.animate().alpha(1f).setDuration(200).start();
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            binding.bottomSheetActions.post(() -> {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                binding.bottomSheetActions.animate().alpha(1f).setDuration(200).start();
+            });
         } else {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-            binding.bottomSheetActions.setVisibility(View.GONE); // ✅
+            binding.bottomSheetActions.setVisibility(View.GONE);
         }
 
         updateEditMenuIcon();
@@ -229,25 +181,21 @@ public class RoutinesFragment extends Fragment {
 
     private void navigateToEditHabit(Habit habit) {
         Bundle args = new Bundle();
-        args.putInt("habitId", habit.getId()); // 🔑 passer l’ID de l’habitude
+        args.putInt("habitId", habit.getId());
 
-        // Naviguer vers le fragment avec l’ID
         requireActivity()
                 .getSupportFragmentManager()
-                .setFragmentResult("edit_habit_request", args); // pour écoute dans le AddEditHabitFragment
+                .setFragmentResult("edit_habit_request", args);
 
-        // Utilise Navigation Component si configuré
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_routinesFragment_to_addEditHabitFragment, args);
     }
 
-
     private void exitEditMode() {
         adapter.exitEditMode();
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        binding.bottomSheetActions.setVisibility(View.GONE); // ✅
+        binding.bottomSheetActions.setVisibility(View.GONE);
     }
-
 
     private void updateEditMenuIcon() {
         if (editMenuItem != null) {

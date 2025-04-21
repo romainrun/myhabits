@@ -1,4 +1,6 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -54,69 +56,47 @@
             android:progressDrawable="@drawable/glow_progress"
             android:layout_marginBottom="28dp" />
 
-        <!-- 📅 Aujourd’hui -->
-        <TextView
-            style="@style/SectionTitle"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aujourd’hui" />
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="8dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/white">
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/primaryAccent"
+                app:tabIndicatorHeight="4dp"
+                app:tabSelectedTextColor="@color/primaryAccent"
+                app:tabTextColor="@color/textSecondary"
+                app:tabIndicatorFullWidth="false"
+                app:tabRippleColor="@android:color/transparent"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@android:color/transparent" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- 📋 Liste dynamique -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_habits_today"
+            android:id="@+id/recycler_habits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="16dp" />
 
+        <!-- 🌱 Message vide -->
         <TextView
             android:id="@+id/text_empty_today"
             style="@style/TextAppearance_EmptyState"
-            android:text="Aucune habitude aujourd’hui 😴"
-            android:layout_marginBottom="24dp" />
-
-        <!-- ⏱ En retard -->
-        <TextView
-            style="@style/SectionTitle"
+            android:text="Aucune habitude à afficher 😴"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tâches en retard"
-            android:layout_marginTop="16dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_habits_missed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false" />
-
-        <TextView
-            android:id="@+id/text_empty_missed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance_EmptyState"
-            android:text="Aucune tâche en retard 👌"
-            android:layout_marginBottom="24dp" />
-
-        <!-- 📆 Pour demain -->
-        <TextView
-            style="@style/SectionTitle"
-            android:text="Pour demain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_habits_tomorrow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false" />
-
-        <TextView
-            android:id="@+id/text_empty_tomorrow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance_EmptyState"
-            android:text="Rien de prévu demain 😎"
+            android:gravity="center"
             android:layout_marginBottom="32dp" />
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

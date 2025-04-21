@@ -43,7 +43,10 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">16sp</item>
     </style>
-
+    <style name="TextAppearance.App.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">?attr/colorOnBackground</item>
+        <item name="android:fontFamily">@font/inter</item>
+    </style>
     <style name="Chip.DayOfWeek" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textPrimary</item>

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.rrtech.myhabits.data.model.HabitCheck;
@@ -12,9 +13,6 @@ import java.util.List;
 
 @Dao
 public interface HabitCheckDao {
-
-    @Insert
-    void insert(HabitCheck check);
 
     @Delete
     void delete(HabitCheck check);
@@ -35,6 +33,10 @@ public interface HabitCheckDao {
     @Query("SELECT COUNT(*) FROM habit_check WHERE habitId = :habitId")
     LiveData<Integer> getCheckCountForHabit(int habitId);
 
+    // ✅ Insertion avec remplacement si conflit (habitId + date)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(HabitCheck check);
+
     // ✅ Tous les checks (synchrone, pour calcul de streak)
     @Query("SELECT * FROM habit_check WHERE habitId = :habitId ORDER BY date DESC")
     List<HabitCheck> getChecksSync(int habitId);
@@ -46,4 +48,8 @@ public interface HabitCheckDao {
     // ✅ Total global de validations (toutes habitudes confondues)
     @Query("SELECT COUNT(*) FROM habit_check")
     LiveData<Integer> getTotalCheckCount();
+
+    // ✅ Check synchrone pour un habitId + date (utile pour vérification dans les threads)
+    @Query("SELECT * FROM habit_check WHERE habitId = :habitId AND date = :date LIMIT 1")
+    HabitCheck getCheckForHabitSync(int habitId, String date);
 }

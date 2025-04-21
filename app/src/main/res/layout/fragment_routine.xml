@@ -12,11 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Aucune routine pour l’instant.\nAppuie sur + pour en créer une !"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance_EmptyState"
-        android:layout_marginTop="48dp"
-        android:padding="24dp"
         android:textAlignment="center"
+        android:gravity="center"
+        android:textColor="@color/textSecondary"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="6dp"
+        android:layout_marginTop="64dp"
+        android:padding="24dp"
         android:visibility="gone" />
 
     <!-- 📋 Liste des routines -->
@@ -34,25 +37,27 @@
         android:id="@+id/bottomSheetActions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="90dp"
+        android:layout_gravity="bottom"
+        android:visibility="invisible"
+        android:elevation="12dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="10dp"
         android:backgroundTint="@color/cardBackground"
-        android:elevation="10dp"
-        android:visibility="gone"
-        app:cardCornerRadius="20dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="20dp"
-            android:paddingHorizontal="24dp"
             android:gravity="center"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="16dp"
             android:weightSum="3">
 
-            <!-- Modifier -->
+            <!-- ✏️ Modifier -->
             <LinearLayout
                 android:id="@+id/action_edit"
                 android:layout_width="0dp"
@@ -65,7 +70,6 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@drawable/ic_edit"
-                    android:contentDescription="Modifier"
                     app:tint="@color/primaryAccent" />
 
                 <TextView
@@ -74,10 +78,11 @@
                     android:text="Modifier"
                     android:textColor="@color/textPrimary"
                     android:textSize="12sp"
-                    android:layout_marginTop="6dp" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
-            <!-- Dupliquer -->
+            <!-- 📄 Dupliquer -->
             <LinearLayout
                 android:id="@+id/action_duplicate"
                 android:layout_width="0dp"
@@ -90,7 +95,6 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@drawable/ic_copy"
-                    android:contentDescription="Dupliquer"
                     app:tint="@color/primaryAccent" />
 
                 <TextView
@@ -99,10 +103,11 @@
                     android:text="Dupliquer"
                     android:textColor="@color/textPrimary"
                     android:textSize="12sp"
-                    android:layout_marginTop="6dp" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
 
-            <!-- Supprimer -->
+            <!-- 🗑️ Supprimer -->
             <LinearLayout
                 android:id="@+id/action_delete"
                 android:layout_width="0dp"
@@ -115,7 +120,6 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:src="@drawable/ic_delete"
-                    android:contentDescription="Supprimer"
                     app:tint="@color/red" />
 
                 <TextView
@@ -124,9 +128,9 @@
                     android:text="Supprimer"
                     android:textColor="@color/red"
                     android:textSize="12sp"
-                    android:layout_marginTop="6dp" />
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium" />
             </LinearLayout>
-
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
