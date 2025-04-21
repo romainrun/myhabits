@@ -1,28 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="12dp"
+    android:paddingHorizontal="8dp">
 
+    <!-- 🌀 Spinner stylisé -->
     <Spinner
         android:id="@+id/spinner_routine"
         android:layout_width="0dp"
-        style="@style/AppSpinnerStyle"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:spinnerMode="dropdown"
-        android:padding="8dp" />
+        style="@style/AppSpinnerStyle"
+        android:paddingVertical="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="8dp" />
 
+    <!-- 🗑️ Supprimer -->
     <ImageButton
         android:id="@+id/button_delete_routine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginStart="12dp"
         android:contentDescription="Supprimer la routine"
-        android:src="@android:drawable/ic_delete"
-        app:tint="?attr/colorError" />
+        android:src="@drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@color/red_600" />
 </LinearLayout>

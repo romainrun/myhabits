@@ -68,8 +68,9 @@ public class HabitRepository {
             future.complete(id);
         });
         return future;
+    }public CompletableFuture<Long> insertHabitAndReturnId(Habit habit) {
+        return CompletableFuture.supplyAsync(() -> habitDao.insertAndReturnId(habit));
     }
-
     public void update(Habit habit) {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             habitDao.update(habit);

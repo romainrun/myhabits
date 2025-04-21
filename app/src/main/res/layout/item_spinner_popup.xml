@@ -1,9 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text_spinner_item"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="12dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:paddingHorizontal="16dp"
-    android:textSize="16sp"
-    android:textColor="?android:textColorPrimary" />
+    android:paddingVertical="10dp"
+    android:background="@android:color/white">
+
+    <!-- 🎯 Spinner routiné -->
+    <Spinner
+        android:id="@+id/spinner_routine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:spinnerMode="dropdown"
+        style="@style/AppSpinnerStyle"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp" />
+
+    <!-- ❌ Bouton suppression -->
+    <ImageButton
+        android:id="@+id/button_delete_routine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="Supprimer la routine"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@color/red_600" />
+</LinearLayout>

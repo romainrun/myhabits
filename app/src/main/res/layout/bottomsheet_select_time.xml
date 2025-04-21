@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottom_sheet_time_picker"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottomsheet_background"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@drawable/bottomsheet_background">
 
+    <!-- 🕒 Titre -->
     <TextView
         android:id="@+id/label_title"
         android:layout_width="wrap_content"
@@ -14,79 +14,107 @@
         android:text="Sélectionner une heure"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/textPrimary"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp" />
 
+    <!-- 🧭 Heure / Minute -->
     <LinearLayout
         android:id="@+id/time_picker_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="16dp"
+        android:weightSum="2">
 
-        <EditText
-            android:id="@+id/input_hour"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="HH"
-            android:inputType="number"
-            android:maxLength="2"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:background="@drawable/input_background"
-            android:padding="12dp" />
+            android:layout_marginEnd="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="12dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="HH"
+                android:inputType="number"
+                android:maxLength="2"
+                android:gravity="center"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/input_minute"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="MM"
-            android:inputType="number"
-            android:maxLength="2"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:background="@drawable/input_background"
-            android:padding="12dp" />
+            android:layout_marginStart="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_minute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="MM"
+                android:inputType="number"
+                android:maxLength="2"
+                android:gravity="center"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+    <!-- 🌗 AM / PM toggle (visible uniquement si 12h) -->
+    <RadioGroup
+        android:id="@+id/amPmToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/radio_am"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AM"
+            android:buttonTint="@color/primaryAccent"
+            android:textColor="@color/textPrimary"
+            android:paddingHorizontal="20dp" />
+
+        <RadioButton
+            android:id="@+id/radio_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PM"
+            android:buttonTint="@color/primaryAccent"
+            android:textColor="@color/textPrimary"
+            android:paddingHorizontal="20dp" />
+    </RadioGroup>
+
+    <!-- ✅ Boutons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCancel"
+            style="@style/Button_Outlined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Annuler"
-            android:textColor="@color/black"
-            android:background="?attr/selectableItemBackground"
-            android:minWidth="0dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingVertical="8dp" />
+            android:text="Annuler" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonConfirm"
+            style="@style/Button_Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valider"
-            android:textColor="@android:color/white"
-            android:backgroundTint="?attr/colorPrimary"
-            android:layout_marginStart="12dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:paddingVertical="8dp" />
+            android:layout_marginStart="12dp" />
     </LinearLayout>
+
 </LinearLayout>

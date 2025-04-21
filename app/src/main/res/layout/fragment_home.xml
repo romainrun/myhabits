@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true"
     tools:context=".fragment.HomeFragment">
 
@@ -11,55 +11,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:padding="24dp"
         android:paddingBottom="96dp"
         android:clipToPadding="false"
         android:clipChildren="false">
 
-        <!-- Citation motivante -->
+        <!-- ✨ Citation motivante -->
         <TextView
             android:id="@+id/text_motivation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Chaque petite action compte ✨"
             android:textSize="24sp"
+            android:textColor="@color/textPrimary"
             android:fontFamily="sans-serif-medium"
             android:textAlignment="center"
             android:gravity="center"
-            android:lineSpacingExtra="6dp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="28dp"
+            android:lineSpacingExtra="8dp"
             android:layout_marginTop="16dp"
-            android:text="Motivation ici ✨" />
+            android:layout_marginBottom="32dp" />
 
-        <!-- Pourcentage de complétion -->
+        <!-- ✅ Pourcentage de complétion -->
         <TextView
             android:id="@+id/text_progress_percentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0%"
             android:textSize="16sp"
+            android:textColor="@color/textPrimary"
             android:textStyle="bold"
             android:layout_gravity="end"
             android:layout_marginBottom="8dp" />
 
-        <!-- Barre de progression stylisée -->
+        <!-- ✅ Barre de progression -->
         <ProgressBar
             android:id="@+id/progress_day"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="14dp"
+            android:layout_height="16dp"
             android:max="100"
             android:progress="0"
             android:progressDrawable="@drawable/glow_progress"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="28dp" />
 
-        <!-- Aujourd’hui -->
+        <!-- 📅 Aujourd’hui -->
         <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
-            android:text="Aujourd’hui"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            style="@style/SectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aujourd’hui" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_habits_today"
@@ -70,68 +70,53 @@
 
         <TextView
             android:id="@+id/text_empty_today"
+            style="@style/TextAppearance_EmptyState"
+            android:text="Aucune habitude aujourd’hui 😴"
+            android:layout_marginBottom="24dp" />
+
+        <!-- ⏱ En retard -->
+        <TextView
+            style="@style/SectionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aucune habitude aujourd’hui 😴"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/darker_gray" />
-
-        <!-- En retard -->
-        <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
             android:text="Tâches en retard"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_marginTop="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_habits_missed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:nestedScrollingEnabled="false" />
 
         <TextView
             android:id="@+id/text_empty_missed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance_EmptyState"
             android:text="Aucune tâche en retard 👌"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/darker_gray" />
+            android:layout_marginBottom="24dp" />
 
-        <!-- Demain -->
+        <!-- 📆 Pour demain -->
         <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
+            style="@style/SectionTitle"
             android:text="Pour demain"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_habits_tomorrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:nestedScrollingEnabled="false" />
 
         <TextView
             android:id="@+id/text_empty_tomorrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TextAppearance_EmptyState"
             android:text="Rien de prévu demain 😎"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_marginBottom="32dp"
-            android:textColor="@android:color/darker_gray" />
+            android:layout_marginBottom="32dp" />
 
     </LinearLayout>
 </ScrollView>

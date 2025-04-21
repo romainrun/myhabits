@@ -2,6 +2,7 @@ package com.rrtech.myhabits.ui.main;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.badge.BadgeDrawable;
 import com.rrtech.myhabits.R;
 import com.rrtech.myhabits.databinding.ActivityMainBinding;
@@ -23,8 +25,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MaterialToolbar toolbar = findViewById(R.id.top_app_bar);
+        setSupportActionBar(toolbar);
 
         NavHostFragment navHostFragment = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);

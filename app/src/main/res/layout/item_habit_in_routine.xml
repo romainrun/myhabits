@@ -1,28 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/habitItemContainer"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="@color/cardBackground"
+    app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/habitNameTextView"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Nom de l’habitude"
-        android:textSize="16sp" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
 
-    <ImageButton
-        android:id="@+id/deleteHabitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
-        android:contentDescription="Supprimer cette habitude"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:tint="?attr/colorError" />
-</LinearLayout>
+        <!-- ✅ Checkbox (édition) -->
+        <CheckBox
+            android:id="@+id/habitCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:buttonTint="@color/primaryAccent"
+            android:visibility="gone" />
+
+        <!-- 📘 Texte -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Titre de l’habitude -->
+            <TextView
+                android:id="@+id/habitNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lecture"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimary"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginBottom="4dp" />
+
+            <!-- ⏰ Heure + 📅 Jours -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/habitTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_time_badge"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="07:00"
+                    android:textSize="12sp"
+                    android:textColor="@color/textSecondary"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/habitDaysTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lun, Mar, Mer"
+                    android:textSize="12sp"
+                    android:textColor="@color/textSecondary"
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 🗑️ Supprimer -->
+        <ImageButton
+            android:id="@+id/deleteHabitButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="Supprimer"
+            android:background="@drawable/bg_circle_button_red"
+            android:scaleType="center"
+            app:tint="@android:color/white" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

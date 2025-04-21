@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.rrtech.myhabits.data.model.Habit;
 import com.rrtech.myhabits.data.repository.HabitRepository;
@@ -33,7 +34,9 @@ public class HabitViewModel extends AndroidViewModel {
     public LiveData<List<Habit>> getAllHabits() {
         return allHabits;
     }
-
+    public LiveData<Habit> getHabitById(int habitId) {
+        return repository.getHabitById(habitId);
+    }
     public LiveData<List<Habit>> getAllByImportance() {
         return allByImportance;
     }
@@ -76,4 +79,5 @@ public class HabitViewModel extends AndroidViewModel {
             }
         });
     }
+
 }

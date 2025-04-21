@@ -1,32 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/habitCompactRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="56dp"
+    android:minHeight="64dp"
     android:orientation="horizontal"
-    android:padding="12dp"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="12dp"
     android:gravity="center_vertical"
     android:background="?attr/selectableItemBackground">
 
-    <!-- Icône -->
+    <!-- 🎯 Emoji -->
     <TextView
         android:id="@+id/habitIconCompact"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:gravity="center"
         android:text="📚"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:background="@drawable/bg_circle"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/white" />
 
-    <!-- Détails -->
+    <!-- 📋 Détails -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_marginStart="12dp">
+        android:layout_marginStart="14dp"
+        android:lineSpacingExtra="2dp">
 
         <TextView
             android:id="@+id/habitNameCompact"
@@ -35,7 +37,7 @@
             android:text="Nom de l’habitude"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
+            android:textColor="@color/textPrimary"
             android:maxLines="1"
             android:ellipsize="end" />
 
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:text="Dernier jour prévu : Lundi"
             android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/textSecondary"
             android:visibility="gone"
             android:layout_marginTop="2dp" />
 
@@ -55,29 +57,29 @@
             android:layout_height="wrap_content"
             android:text="Non validée depuis 3 jours"
             android:textSize="12sp"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/red"
             android:layout_marginTop="2dp"
             android:visibility="gone" />
 
-            <TextView
+        <TextView
             android:id="@+id/text_routine_name_compact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Routine : Matin"
             android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/textSecondary"
             android:layout_marginTop="2dp"
             android:visibility="visible" />
     </LinearLayout>
 
-    <!-- Checkbox (invisible ici mais toujours présent pour le même adapter) -->
+    <!-- ☑️ Check (mode édition uniquement) -->
     <CheckBox
         android:id="@+id/habitCheckCompact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
 
-    <!-- Couleur (rond de couleur à droite) -->
+    <!-- 🎨 Point couleur -->
     <View
         android:id="@+id/habitIconCompactWrapper"
         android:layout_width="12dp"

@@ -13,8 +13,10 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.rrtech.myhabits.R;
 import com.rrtech.myhabits.databinding.BottomsheetSelectTimeBinding;
+import com.rrtech.myhabits.utils.SettingsManager;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class TimePickerBottomSheet extends BottomSheetDialogFragment {
 
@@ -24,6 +26,7 @@ public class TimePickerBottomSheet extends BottomSheetDialogFragment {
 
     private final OnTimeSelectedListener callback;
     private BottomsheetSelectTimeBinding binding;
+    private boolean is24HFormat;
 
     public TimePickerBottomSheet(OnTimeSelectedListener callback) {
         this.callback = callback;
@@ -37,7 +40,7 @@ public class TimePickerBottomSheet extends BottomSheetDialogFragment {
                              @Nullable Bundle savedInstanceState) {
         binding = BottomsheetSelectTimeBinding.inflate(inflater, container, false);
 
-        // Animation d'apparition
+        // Animation d’apparition
         binding.getRoot().setAlpha(0f);
         binding.getRoot().setTranslationY(50f);
         binding.getRoot().animate()
@@ -46,24 +49,39 @@ public class TimePickerBottomSheet extends BottomSheetDialogFragment {
                 .setDuration(300)
                 .start();
 
-        return binding.getRoot(); // ✅ essentiel pour afficher le layout
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Heure actuelle + 30 minutes
+        is24HFormat = SettingsManager.is24HFormat(requireContext());
+        binding.amPmToggle.setVisibility(is24HFormat ? View.GONE : View.VISIBLE);
+
+        // Valeurs par défaut : heure actuelle + 30min
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, 30);
-        int defaultHour = calendar.get(Calendar.HOUR_OF_DAY);
-        int defaultMinute = calendar.get(Calendar.MINUTE);
 
-        binding.inputHour.setText(String.format("%02d", defaultHour));
-        binding.inputMinute.setText(String.format("%02d", defaultMinute));
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
 
+        if (is24HFormat) {
+            binding.inputHour.setText(String.format(Locale.getDefault(), "%02d", hour));
+        } else {
+            int hour12 = hour % 12;
+            if (hour12 == 0) hour12 = 12;
+            binding.inputHour.setText(String.format(Locale.getDefault(), "%02d", hour12));
+            binding.radioAm.setChecked(hour < 12);
+            binding.radioPm.setChecked(hour >= 12);
+        }
+
+        binding.inputMinute.setText(String.format(Locale.getDefault(), "%02d", minute));
+
+        // Annuler
         binding.buttonCancel.setOnClickListener(v -> dismiss());
 
+        // Confirmer
         binding.buttonConfirm.setOnClickListener(v -> {
             String hourStr = binding.inputHour.getText().toString().trim();
             String minuteStr = binding.inputMinute.getText().toString().trim();
@@ -74,14 +92,24 @@ public class TimePickerBottomSheet extends BottomSheetDialogFragment {
             }
 
             try {
-                int hour = Integer.parseInt(hourStr);
-                int minute = Integer.parseInt(minuteStr);
+                int hourInput = Integer.parseInt(hourStr);
+                int minuteInput = Integer.parseInt(minuteStr);
 
-                if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+                // Validation
+                if (hourInput < 0 || minuteInput < 0 || minuteInput > 59 ||
+                        (is24HFormat && hourInput > 23) ||
+                        (!is24HFormat && (hourInput > 12 || hourInput == 0))) {
                     throw new NumberFormatException();
                 }
 
-                callback.onTimeSelected(hour, minute);
+                int finalHour = hourInput;
+                if (!is24HFormat) {
+                    boolean isPM = binding.radioPm.isChecked();
+                    if (isPM && finalHour < 12) finalHour += 12;
+                    if (!isPM && finalHour == 12) finalHour = 0;
+                }
+
+                callback.onTimeSelected(finalHour, minuteInput);
                 dismiss();
 
             } catch (NumberFormatException e) {

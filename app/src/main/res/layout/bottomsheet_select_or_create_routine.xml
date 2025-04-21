@@ -2,9 +2,8 @@
     android:id="@+id/bottom_sheet_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80000000"> <!-- fond sombre semi-transparent -->
+    android:background="#80000000"> <!-- fond semi-transparent -->
 
-    <!-- Contenu réel du bottom sheet -->
     <LinearLayout
         android:id="@+id/bottom_sheet_container"
         android:layout_width="match_parent"
@@ -12,56 +11,66 @@
         android:layout_gravity="bottom"
         android:orientation="vertical"
         android:padding="24dp"
-        android:background="@drawable/bottomsheet_background">
+        android:background="@drawable/bottomsheet_background"
+        android:elevation="12dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ajouter une routine"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingBottom="12dp" />
-
-    <Spinner
-        android:id="@+id/spinner_existing_routines"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_routine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nom de la routine"
-        android:visibility="gone">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_routine_name"
+        <!-- Titre -->
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-
-        <Button
-            android:id="@+id/button_cancel"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Annuler" />
+            android:text="Ajouter une routine"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/textPrimary"
+            android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/button_add"
-            android:layout_width="wrap_content"
+        <!-- Sélection des routines existantes -->
+        <Spinner
+            android:id="@+id/spinner_existing_routines"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ajouter"
-            android:textColor="@android:color/white"
-            android:backgroundTint="?attr/colorPrimary"
-            android:layout_marginStart="12dp" />
+            android:layout_marginBottom="12dp"
+            style="@style/AppSpinnerStyle" />
+
+        <!-- Champ pour créer une nouvelle routine -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_routine"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nom de la routine"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_routine_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Boutons d'action -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Button_Outlined"
+                android:text="Annuler" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Button_Primary"
+                android:text="Ajouter"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </FrameLayout>

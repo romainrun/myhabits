@@ -1,17 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 🔙 Fond de la progress bar -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
-            <solid android:color="#EEEEEE" />
             <corners android:radius="10dp" />
+            <solid android:color="#E0E0E0" /> <!-- gris doux -->
         </shape>
     </item>
+
+    <!-- 💚 Barre de progression -->
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">
-                <solid android:color="@color/colorPrimary" />
                 <corners android:radius="10dp" />
+                <gradient
+                    android:startColor="@color/primaryAccent"
+                    android:centerColor="@color/progressGlow"
+                    android:endColor="@color/primaryAccent"
+                    android:angle="0"
+                    android:type="linear" />
             </shape>
         </clip>
     </item>
+
 </layer-list>

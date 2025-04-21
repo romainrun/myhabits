@@ -1,37 +1,46 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.MyHabits" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.MyHabits" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Couleurs principales -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
 
-        <!-- Fond -->
+        <!-- Fond & surfaces -->
         <item name="colorSurface">@color/colorSurface</item>
         <item name="android:windowBackground">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorError">@color/red</item>
 
         <!-- Police -->
         <item name="android:fontFamily">@font/inter</item>
+        <item name="fontFamily">@font/inter</item>
 
-        <!-- Obligatoire pour TextInputLayout -->
+        <!-- TextInputLayout -->
         <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox</item>
 
-        <!-- ✅ FIX TextInputLayout crash -->
-        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4</item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
-        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
-        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+        <!-- Text appearances -->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Material3.HeadlineLarge</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Material3.HeadlineMedium</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Material3.HeadlineSmall</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Material3.TitleLarge</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Material3.TitleMedium</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Material3.TitleSmall</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Material3.BodySmall</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Material3.LabelMedium</item>
+
+        <!-- ✅ Compatible composants -->
+        <item name="materialButtonStyle">@style/Widget.Material3.Button</item>
+        <item name="cardViewStyle">@style/Widget.MaterialComponents.CardView</item>
+        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Choice</item>
+        <item name="floatingActionButtonStyle">@style/Widget.MaterialComponents.FloatingActionButton</item>
+        <item name="snackbarStyle">@style/Widget.Material3.Snackbar</item>
     </style>
 
 </resources>

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -46,6 +47,7 @@ public class AddEditHabitFragment extends Fragment {
     private String selectedHabitColor = "#4CAF50";
     private String reminderTime = "";
     private int reminderOffsetMinutes = 0;
+    private int editingHabitId = -1;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -63,6 +65,37 @@ public class AddEditHabitFragment extends Fragment {
         routinesViewModel = new ViewModelProvider(requireActivity()).get(RoutinesViewModel.class);
 
         boolean isPro = ProState.getInstance(requireContext()).isPro();
+
+        if (getArguments() != null && getArguments().containsKey("habitId")) {
+            editingHabitId = getArguments().getInt("habitId", -1);
+            if (editingHabitId != -1) {
+                habitViewModel.getHabitById(editingHabitId).observe(getViewLifecycleOwner(), habit -> {
+                    if (habit != null) {
+                        binding.editHabitName.setText(habit.getName());
+                        selectedHabitIcon = habit.getIcon();
+                        selectedHabitColor = habit.getColor();
+                        binding.textSelectedIcon.setText(selectedHabitIcon);
+                        binding.viewSelectedColor.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(selectedHabitColor)));
+                        reminderTime = habit.getReminderTime();
+                        binding.editReminderTime.setText(reminderTime);
+                        binding.switchReminder.setChecked(habit.isHasReminder());
+
+                        String[] days = habit.getRepeatDays().split(",");
+                        for (String d : days) {
+                            switch (d.trim()) {
+                                case "1": binding.chipMon.setChecked(true); break;
+                                case "2": binding.chipTue.setChecked(true); break;
+                                case "3": binding.chipWed.setChecked(true); break;
+                                case "4": binding.chipThu.setChecked(true); break;
+                                case "5": binding.chipFri.setChecked(true); break;
+                                case "6": binding.chipSat.setChecked(true); break;
+                                case "7": binding.chipSun.setChecked(true); break;
+                            }
+                        }
+                    }
+                });
+            }
+        }
 
         observeRoutines();
 
@@ -145,6 +178,27 @@ public class AddEditHabitFragment extends Fragment {
         });
 
         binding.buttonSaveHabit.setOnClickListener(v -> saveHabit(isPro));
+
+        if (editingHabitId != -1) {
+            binding.buttonDeleteHabit.setVisibility(View.VISIBLE);
+        }
+        binding.buttonDeleteHabit.setOnClickListener(v -> {
+            if (editingHabitId != -1) {
+                new AlertDialog.Builder(requireContext())
+                        .setTitle("Supprimer cette habitude ?")
+                        .setMessage("Cette action est irréversible.")
+                        .setPositiveButton("Supprimer", (dialog, which) -> {
+                            habitViewModel.getHabitById(editingHabitId).observe(getViewLifecycleOwner(), habit -> {
+                                if (habit != null) {
+                                    habitViewModel.delete(habit);
+                                    navigateToHome();
+                                }
+                            });
+                        })
+                        .setNegativeButton("Annuler", null)
+                        .show();
+            }
+        });
     }
 
     private void saveHabit(boolean isPro) {
@@ -154,38 +208,39 @@ public class AddEditHabitFragment extends Fragment {
             return;
         }
 
-        habitViewModel.getAllHabits().observe(getViewLifecycleOwner(), habits -> {
-            habitViewModel.getAllHabits().removeObservers(getViewLifecycleOwner());
+        List<Integer> repeatDays = new ArrayList<>();
+        if (binding.chipMon.isChecked()) repeatDays.add(1);
+        if (binding.chipTue.isChecked()) repeatDays.add(2);
+        if (binding.chipWed.isChecked()) repeatDays.add(3);
+        if (binding.chipThu.isChecked()) repeatDays.add(4);
+        if (binding.chipFri.isChecked()) repeatDays.add(5);
+        if (binding.chipSat.isChecked()) repeatDays.add(6);
+        if (binding.chipSun.isChecked()) repeatDays.add(7);
 
-            if (!isPro && habits.size() >= 5) {
-                Toast.makeText(requireContext(), "Limite atteinte : Version gratuite limitée à 5 habitudes. Passez à la version Pro pour en ajouter plus.", Toast.LENGTH_LONG).show();
-                return;
+        String repeatDaysString = TextUtils.join(",", repeatDays);
+
+        Habit habit = new Habit(habitName, selectedHabitIcon, selectedHabitColor, repeatDaysString, 1);
+        habit.setHasReminder(binding.switchReminder.isChecked());
+        habit.setReminderTime(reminderTime);
+        habit.setReminderOffsetMinutes(reminderOffsetMinutes);
+
+        List<Integer> selectedRoutineIds = new ArrayList<>();
+        for (Spinner spinner : routineSpinners) {
+            int selectedIndex = spinner.getSelectedItemPosition();
+            if (selectedIndex >= 0 && selectedIndex < routineList.size()) {
+                selectedRoutineIds.add(routineList.get(selectedIndex).getId());
             }
+        }
 
-            List<Integer> repeatDays = new ArrayList<>();
-            if (binding.chipMon.isChecked()) repeatDays.add(1);
-            if (binding.chipTue.isChecked()) repeatDays.add(2);
-            if (binding.chipWed.isChecked()) repeatDays.add(3);
-            if (binding.chipThu.isChecked()) repeatDays.add(4);
-            if (binding.chipFri.isChecked()) repeatDays.add(5);
-            if (binding.chipSat.isChecked()) repeatDays.add(6);
-            if (binding.chipSun.isChecked()) repeatDays.add(7);
-
-            String repeatDaysString = TextUtils.join(",", repeatDays);
-            Habit newHabit = new Habit(habitName, selectedHabitIcon, selectedHabitColor, repeatDaysString, 1);
-            newHabit.setHasReminder(binding.switchReminder.isChecked());
-            newHabit.setReminderTime(reminderTime);
-            newHabit.setReminderOffsetMinutes(reminderOffsetMinutes);
-
-            List<Integer> selectedRoutineIds = new ArrayList<>();
-            for (Spinner spinner : routineSpinners) {
-                int selectedIndex = spinner.getSelectedItemPosition();
-                if (selectedIndex >= 0 && selectedIndex < routineList.size()) {
-                    selectedRoutineIds.add(routineList.get(selectedIndex).getId());
-                }
+        if (editingHabitId != -1) {
+            habit.setId(editingHabitId);
+            habitViewModel.update(habit);
+            for (int routineId : selectedRoutineIds) {
+                routinesViewModel.addHabitToRoutine(editingHabitId, routineId);
             }
-
-            habitViewModel.insertAndReturnId(newHabit).thenAccept(habitId -> {
+            requireActivity().onBackPressed();
+        } else {
+            habitViewModel.insertAndReturnId(habit).thenAccept(habitId -> {
                 requireActivity().runOnUiThread(() -> {
                     for (int routineId : selectedRoutineIds) {
                         routinesViewModel.addHabitToRoutine(habitId.intValue(), routineId);
@@ -193,7 +248,13 @@ public class AddEditHabitFragment extends Fragment {
                     requireActivity().onBackPressed();
                 });
             });
-        });
+        }
+    }private void navigateToHome() {
+        if (getActivity() != null) {
+            requireActivity()
+                    .getSupportFragmentManager()
+                    .popBackStack(); // OU : navController.navigate(R.id.homeFragment);
+        }
     }
 
     private void observeRoutines() {
@@ -218,7 +279,7 @@ public class AddEditHabitFragment extends Fragment {
             if (isNew) {
                 AppDatabase.databaseWriteExecutor.execute(() -> {
                     int id = (int) AppDatabase.getInstance(requireContext())
-                            .routinesDao().insertAndReturnId(routine);
+                            .routinesDao().insertRoutineAndReturnId(routine);
                     routine.setId(id);
                     requireActivity().runOnUiThread(() -> {
                         routineList.add(routine);

@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_stats"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:padding="24dp"
+    android:background="@color/background"
     android:fillViewport="true">
 
     <LinearLayout
@@ -11,54 +12,40 @@
         android:orientation="vertical"
         android:gravity="top">
 
-        <!-- Titre principal -->
+        <!-- 📊 Titre principal -->
         <TextView
             android:id="@+id/text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Statistiques générales"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginBottom="24dp"
-            android:textColor="@android:color/black" />
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/textPrimary"
+            android:layout_marginBottom="28dp" />
 
-        <!-- Nombre total d’habitudes -->
+        <!-- ✅ Statistiques -->
         <TextView
             android:id="@+id/textTotalHabits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total d’habitudes : 0"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+            style="@style/StatLine"
+            android:text="Total d’habitudes : 0" />
 
-        <!-- Nombre total de validations -->
         <TextView
             android:id="@+id/textTotalChecks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Total de validations : 0"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+            style="@style/StatLine"
+            android:text="Total de validations : 0" />
 
-        <!-- Meilleur streak -->
         <TextView
             android:id="@+id/textBestStreak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Meilleur enchaînement : 0 jours"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+            style="@style/StatLine"
+            android:text="Meilleur enchaînement : 0 jours" />
 
-        <!-- Habitude la plus fréquente -->
         <TextView
             android:id="@+id/textMostFrequent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Habitude la plus régulière : -"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+            style="@style/StatLine"
+            android:text="Habitude la plus régulière : -" />
 
-        <!-- Ajoute ici d'autres stats si besoin -->
+        <!-- 🔄 Ajout possible d'autres blocs -->
 
     </LinearLayout>
 </ScrollView>

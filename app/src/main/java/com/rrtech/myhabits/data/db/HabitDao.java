@@ -22,6 +22,10 @@ public interface HabitDao {
 
     @Delete
     void delete(Habit habit);
+    @Insert
+    long insertAndReturnId(Habit habit);@Insert
+    void insertCrossRef(HabitRoutineCrossRef crossRef);
+
 
     @Query("SELECT * FROM habit ORDER BY id DESC")
     LiveData<List<Habit>> getAllHabits();

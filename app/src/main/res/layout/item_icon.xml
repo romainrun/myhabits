@@ -1,11 +1,29 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/icon_text"
-    android:layout_width="48dp"
-    android:layout_height="48dp"
-    android:gravity="center"
-    android:text="📘"
-    android:textSize="24sp"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:layout_margin="4dp" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp">
+
+    <!-- 🔘 Emoji dans cercle tactile -->
+    <TextView
+        android:id="@+id/icon_text"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="📘"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_circle"
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+    <!-- ✅ Cercle de sélection (optionnel) -->
+    <View
+        android:id="@+id/view_selection_outline"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_selected_outline"
+        android:visibility="gone" />
+</FrameLayout>

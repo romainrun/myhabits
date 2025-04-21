@@ -1,29 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_margin="8dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
 
-<View
-    android:id="@+id/view_color"
-    android:layout_width="32dp"
-    android:layout_height="32dp"
-    android:background="@drawable/color_circle" />
+    <!-- ⚪ Cercle coloré -->
+    <View
+        android:id="@+id/view_color"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_color_circle"
+        android:elevation="2dp" />
 
-<ImageView
-    android:id="@+id/lock_icon"
-    android:layout_width="20dp"
-    android:layout_height="20dp"
-    android:layout_gravity="center"
-    android:src="@drawable/ic_lock"
-    android:visibility="gone" />
+    <!-- 🔒 Icône verrou Pro -->
+    <ImageView
+        android:id="@+id/lock_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_lock"
+        app:tint="@android:color/white"
+        android:visibility="gone" />
 
-<View
-    android:id="@+id/selected_outline"
-    android:layout_width="36dp"
-    android:layout_height="36dp"
-    android:background="@drawable/selected_outline"
-    android:layout_gravity="center"
-    android:visibility="gone" />
+    <!-- ✅ Cercle de sélection -->
+    <View
+        android:id="@+id/selected_outline"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_selected_outline"
+        android:visibility="gone" />
 </FrameLayout>

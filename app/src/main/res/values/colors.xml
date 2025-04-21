@@ -12,14 +12,26 @@
     <color name="colorBackground">#C8F560</color>
     <color name="colorPrimaryDark">#90CAF9</color>       <!-- Bleu clair -->
     <color name="colorSecondaryDark">#F48FB1</color>     <!-- Rose clair -->
-    <color name="dark_background">#121212</color>        <!-- Fond sombre -->
-    <color name="dark_surface">#1E1E1E</color>
     <color name="checked_background">#A5D6A7</color>
     <!-- Couleurs principales -->
 <color name="colorPrimaryVariant">#3700B3</color>
 
 <!-- Accent / secondaire -->
-<color name="colorSecondaryVariant">#018786</color>
+    <color name="routine_drag_highlight">#FFE082</color> <!-- un jaune léger -->
+    <color name="chipBackground">#F2F4F6</color> <!-- jaune doux/beige -->
+
+    <color name="colorSecondaryVariant">#018786</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="gray_700">#4E4E4E</color>
+    <color name="red_600">#D32F2F</color>
+    <color name="primaryColor">#2196F3</color> <!-- à adapter selon ta palette -->
+    <color name="background">#F8F9FA</color> <!-- fond très clair -->
+    <color name="cardBackground">#FFFFFF</color> <!-- fond des cards -->
+    <color name="primaryAccent">#4CAF93</color> <!-- vert doux wellness -->
+    <color name="textPrimary">#2D2D2D</color> <!-- gris foncé, très lisible -->
+    <color name="textSecondary">#777777</color> <!-- gris moyen -->
+    <color name="routineTagBackground">#E0F2F1</color> <!-- vert d’eau -->
+    <color name="progressGlow">#A5D6A7</color> <!-- vert clair pour le halo -->
 
 
 <!-- États / erreurs -->
@@ -44,7 +56,9 @@
 <color name="white">#FFFFFF</color>
 <color name="black">#000000</color>
     <color name="orange">#FF9800</color>
-    <color name="red">#F44336</color>
+    <color name="red">#F44336</color><color name="dark_surface">#121212</color>
+    <color name="dark_background">#000000</color>
+    <color name="dark_on_surface">#FFFFFF</color>
 </resources>
 
 

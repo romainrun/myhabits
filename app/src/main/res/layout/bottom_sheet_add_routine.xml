@@ -5,27 +5,30 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@android:color/white">
+    android:background="@color/cardBackground">
 
+    <!-- ✨ Titre -->
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ajouter une routine"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance_Habit_Title"
         android:paddingBottom="12dp" />
 
+    <!-- 📋 Label -->
     <TextView
         android:id="@+id/label_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nom de la routine"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/textSecondary"
         android:textSize="14sp" />
 
+    <!-- ✏️ Champ de saisie -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_routine"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -38,29 +41,27 @@
             android:inputType="textCapSentences" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- → Boutons d'action -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="end"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="24dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/HabitButton.Secondary"
-            android:text="Annuler" />
+            android:text="Annuler"
+            style="@style/Button_Outlined" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ajouter"
-            android:textColor="@android:color/white"
-            android:backgroundTint="?attr/colorPrimary"
-            android:layout_marginStart="12dp"
-            style="@style/HabitButton"
-            />
+            style="@style/Button_Primary"
+            android:layout_marginStart="12dp" />
     </LinearLayout>
 </LinearLayout>

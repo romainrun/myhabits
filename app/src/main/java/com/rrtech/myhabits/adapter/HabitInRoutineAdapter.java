@@ -1,6 +1,7 @@
 package com.rrtech.myhabits.adapter;
 
 import android.content.ClipData;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rrtech.myhabits.R;
 import com.rrtech.myhabits.data.model.Habit;
+import com.rrtech.myhabits.utils.HabitUtils;
 
+import java.text.DateFormatSymbols;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
-// Adapter pour les habitudes à l'intérieur d'une routine avec drag & drop
 public class HabitInRoutineAdapter extends RecyclerView.Adapter<HabitInRoutineAdapter.HabitViewHolder> {
 
     public interface OnHabitActionListener {
@@ -30,8 +33,8 @@ public class HabitInRoutineAdapter extends RecyclerView.Adapter<HabitInRoutineAd
     }
 
     private List<Habit> habits;
-    private OnHabitActionListener actionListener;
-    private OnHabitDragListener dragListener;
+    private final OnHabitActionListener actionListener;
+    private final OnHabitDragListener dragListener;
 
     public HabitInRoutineAdapter(List<Habit> habits, OnHabitActionListener actionListener, OnHabitDragListener dragListener) {
         this.habits = habits;
@@ -49,7 +52,28 @@ public class HabitInRoutineAdapter extends RecyclerView.Adapter<HabitInRoutineAd
     @Override
     public void onBindViewHolder(@NonNull HabitViewHolder holder, int position) {
         Habit habit = habits.get(position);
+        Log.d("DEBUG_HABIT_ADAPTER", "Habit affiché : " + habit.getName());
+
         holder.habitName.setText(habit.getName());
+
+        // Heure
+        if (habit.getReminderTime() != null && !habit.getReminderTime().isEmpty()) {
+            holder.habitTime.setText(habit.getReminderTime());
+            holder.habitTime.setVisibility(View.VISIBLE);
+        } else {
+            holder.habitTime.setVisibility(View.GONE);
+        }
+
+        // Jours
+        if (habit.getRepeatDays() != null && !habit.getRepeatDays().isEmpty()) {
+            List<Integer> repeatDays = HabitUtils.parseDaysFromString(habit.getRepeatDays());
+            String daysFormatted = formatDays(repeatDays);
+
+            holder.habitDays.setText(daysFormatted);
+            holder.habitDays.setVisibility(View.VISIBLE);
+        } else {
+            holder.habitDays.setVisibility(View.GONE);
+        }
 
         holder.deleteButton.setOnClickListener(v -> {
             new AlertDialog.Builder(holder.itemView.getContext())
@@ -87,20 +111,37 @@ public class HabitInRoutineAdapter extends RecyclerView.Adapter<HabitInRoutineAd
         }
     }
 
+    public void updateHabits(List<Habit> newHabits) {
+        this.habits = newHabits;
+        notifyDataSetChanged();
+    }
+
+    private String formatDays(List<Integer> days) {
+        String[] shortDays = new DateFormatSymbols(Locale.getDefault()).getShortWeekdays();
+        return days.stream()
+                .filter(d -> d >= 1 && d <= 7)
+                .map(d -> shortDays[d]) // 1 = Sunday, 7 = Saturday
+                .map(this::capitalizeFirstLetter)
+                .collect(Collectors.joining(", "));
+    }
+
+    private String capitalizeFirstLetter(String s) {
+        if (s == null || s.length() == 0) return "";
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
     public static class HabitViewHolder extends RecyclerView.ViewHolder {
         TextView habitName;
+        TextView habitTime;
+        TextView habitDays;
         ImageButton deleteButton;
 
         public HabitViewHolder(@NonNull View itemView) {
             super(itemView);
             habitName = itemView.findViewById(R.id.habitNameTextView);
+            habitTime = itemView.findViewById(R.id.habitTimeTextView);
+            habitDays = itemView.findViewById(R.id.habitDaysTextView);
             deleteButton = itemView.findViewById(R.id.deleteHabitButton);
         }
     }
-
-    public void updateHabits(List<Habit> newHabits) {
-        this.habits = newHabits;
-        notifyDataSetChanged();
-    }
 }
-

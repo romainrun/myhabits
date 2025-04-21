@@ -5,32 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:padding="20dp"
+    android:background="@color/cardBackground">
 
+    <!-- ✨ Titre -->
     <TextView
         android:id="@+id/label_color_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choisissez une couleur"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+        android:textAppearance="@style/TextAppearance_Habit_Title"
+        android:layout_marginBottom="16dp" />
 
+    <!-- 📃 Couleurs -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_colors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="20dp" />
 
+    <!-- 💪 Bloc Pro -->
     <LinearLayout
         android:id="@+id/layout_pro_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/bg_pro_hint"
-        android:padding="12dp"
-        android:layout_marginBottom="12dp"
+        android:padding="14dp"
+        android:layout_marginBottom="20dp"
         android:visibility="gone"
         android:gravity="center">
 
@@ -39,22 +41,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🎨 Plus de couleurs sont disponibles avec la version Pro"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primaryAccent"
             android:textAlignment="center"
             android:textStyle="italic"
             android:layout_marginBottom="8dp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_go_pro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Débloquer la version Pro"
             android:textAllCaps="false"
-            style="@style/HabitButton.Secondary"
-            android:textColor="@android:color/white" />
+            style="@style/Button_Primary" />
     </LinearLayout>
 
-    <Button
+    <!-- ❌ Bouton annuler -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_cancel_color_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

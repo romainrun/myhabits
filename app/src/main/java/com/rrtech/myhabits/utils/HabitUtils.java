@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -58,4 +59,30 @@ public class HabitUtils {
         // 1 = lundi, 7 = dimanche (selon java.time.DayOfWeek)
         return LocalDate.now().getDayOfWeek().getValue();
     }
+
+    public static List<Integer> parseDaysFromString(String daysString) {
+        if (daysString == null || daysString.trim().isEmpty()) return Collections.emptyList();
+        String[] parts = daysString.split(",");
+        List<Integer> result = new java.util.ArrayList<>();
+        for (String part : parts) {
+            try {
+                result.add(Integer.parseInt(part.trim()));
+            } catch (NumberFormatException ignored) {}
+        }
+        return result;
+    }
+
+    private String formatDays(List<Integer> days) {
+        String[] dayLabels = {"Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"};
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < days.size(); i++) {
+            int index = days.get(i) - 1;
+            if (index >= 0 && index < 7) {
+                builder.append(dayLabels[index]);
+                if (i < days.size() - 1) builder.append(", ");
+            }
+        }
+        return builder.toString();
+    }
+
 }

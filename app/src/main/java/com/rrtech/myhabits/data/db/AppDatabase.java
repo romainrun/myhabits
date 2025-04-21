@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
                 Routine.class,
                 HabitRoutineCrossRef.class
         },
-        version = 30,
+        version = 31,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
